@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battleship Game</title>
+
+    <link rel="stylesheet" href="./styles/games.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet" />
+
+</head>
+
+
+
+<body>
+    <div id="app">
+        <div id="wrapper">
+            <header class="d-flex flex-column align-items-center justify-content-center">
+                <h1 class="text-white">BATTLESHIP</h1>
+                <!-- Button trigger modal -->
+                <button v-show="!sesionR" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Login
+                </button>
+                <button v-show="sesionR" @click="signOut" type="button" class="btn btn-danger">
+                    Sign Out
+                </button>
+
+            </header>
+
+            {{sesion}}
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Pills navs -->
+                            <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register" aria-selected="false">Register</a>
+                                </li>
+                            </ul>
+                            <!-- Pills navs -->
+                            <!-- Pills content -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+                                    <form>
+                                        <!-- Email input -->
+                                        <div class="form-outline mb-4">
+                                            <input v-model="user" type="email" id="loginName" class="form-control" required />
+                                            <label class="form-label" for="loginName">Email or username</label>
+                                        </div>
+                                        <!-- Password input -->
+                                        <div class="form-outline mb-4">
+                                            <input v-model="password" type="password" id="loginPassword" class="form-control" required />
+                                            <label class="form-label" for="loginPassword">Password</label>
+                                        </div>
+                                        <!-- Submit button -->
+                                        <button @click="login" type="button" class="btn btn-primary btn-block mb-4">Sign
+                                            in</button>
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+                                    <form>
+                                        <!-- Username input -->
+                                        <div class="form-outline mb-4">
+                                            <input v-model="userR" type="text" id="registerUsername" class="form-control" />
+                                            <label class="form-label" for="registerUsername">Username</label>
+                                        </div>
+                                        <!-- Email input -->
+                                        <div class="form-outline mb-4">
+                                            <input v-model="email" type="email" id="registerEmail" class="form-control" />
+                                            <label class="form-label" for="registerEmail">Email</label>
+                                        </div>
+                                        <!-- Password input -->
+                                        <div class="form-outline mb-4">
+                                            <input v-model="passwordR" type="password" id="registerPassword" class="form-control" />
+                                            <label class="form-label" for="registerPassword">Password</label>
+                                        </div>
+                                        <!-- Repeat Password input -->
+                                        <div class="form-outline mb-4">
+                                            <input v-model="passwordRepeat" type="password" id="registerRepeatPassword" class="form-control" required />
+                                            <label class="form-label" for="registerRepeatPassword">Repeat
+                                                password</label>
+                                        </div>
+                                        <!-- Submit button -->
+                                        <button @click="register" type="button" class="btn btn-primary btn-block mb-3">Sign in</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Pills content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="d-flex flex-column align-items-center pt-5" style="background-color: rgb(27, 27, 27);">
+                <table class="table w-75">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Top</th>
+                            <th scope="col">Player</th>
+                            <th scope="col">Score Total</th>
+                            <th scope="col">Won</th>
+                            <th scope="col">Lost</th>
+                            <th scope="col">Tied</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-dark">
+                        <tr v-for="(player, index) in players">
+                            <th scope="row">{{index+1}}</th>
+                            <td>{{player.user}}</td>
+                            <td>{{player.total}}</td>
+                            <td>{{player.won}}</td>
+                            <td>{{player.lost}}</td>
+                            <td>{{player.tied}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <section class="d-flex justify-content-center">
+                    <button @click="createGame" class="cybr-btn" style="background-color: brown;">
+                        New Game<span aria-hidden>_</span>
+                        <span aria-hidden class="cybr-btn__glitch">New Game</span>
+                        <span aria-hidden class="cybr-btn__tag">R25</span>
+                    </button>
+                </section>
+            </section>
+            <main class="d-flex j justify-content-center" style="background-color: rgb(27, 27, 27);">
+
+                <div class="container">
+                    <div v-for="game in games" class="cardCSS">
+                        <div class="box">
+                            <div class="content">
+                                <h2></h2>
+                                <h3>vs</h3>
+                                <h3>{{game.player.user}}</h3>
+                                <button @click="joinGame(game.idGame)" class="btn btn-primary" type="button">Join</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+        </div>
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./scripts/games.js"></script>
+</body>
+
+</html>

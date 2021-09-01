@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battleship Game</title>
+    <link rel="stylesheet" href="./styles/game.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="app">
+        <div id="wrapper">
+            <header>
+                <section v-if="status == 'wait_salvos_enemy' || status == 'shoot'" class="d-flex">
+                    <div>
+                        <h2>{{player.user}}</h2>
+                    </div>
+                    <div>
+                        <h1>VS</h1>
+                    </div>
+                    <div>
+                        <h2>{{user2}}</h2>
+                    </div>
+                </section>
+                <section v-else>
+                    <h1>{{status}}</h1>
+                </section>
+            </header>
+            <main>
+                <section class="tables">
+                    <div>
+                        <h4 class="text-center">SHIPS</h4>
+                        <table class="tableSelect">
+                            <thead>
+                                <th>#</th>
+                                <th v-for="elements in thead">{{elements}}</th>
+                            </thead>
+                            <tbody>
+                                <tr v-for="element in tbody">
+                                    <td>{{element}}</td>
+                                    <td v-for="elements in thead" :id="element+elements" @click="idTableShipSelect(element+elements)"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div v-show="showSalvoTable" class="ms-5">
+                        <h4 class="text-center">SALVOS</h4>
+                        <table class="tableSelect">
+                            <thead>
+                                <th>#</th>
+                                <th v-for="elements in thead">{{elements}}</th>
+                            </thead>
+                            <tbody>
+                                <tr v-for="element in tbody">
+                                    <td>{{element}}</td>
+                                    <td @click="selectSalvo('S'+element+elements)" v-for="elements in thead" :id="'S'+element+elements"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> {{color}} {{salvo}} {{player2salvos}}
+                </section>
+                <section v-show="showStarButton && showStar" class="final">
+                    <div>
+                        <button @click="changeShip(ship)" v-for="ship in shipsType">{{ship}}</button>
+                        <label for="vertical">VERTICAL</label>
+                        <input v-model="vertical" type="checkbox" name="vertical" id="vertical">{{vertical}}
+                    </div>
+                    <button @click="sendLocationShips" class="cybr-btn" style="background-color: brown;">
+                        Star<span aria-hidden>_</span>
+                        <span aria-hidden class="cybr-btn__glitch">Cyber_</span>
+                        <span aria-hidden class="cybr-btn__tag">R25</span>
+                    </button>
+                </section>
+                <section v-show="status == 'shoot' && showShoot" class="final">
+                    <button @click="sendSalvos" class="cybr-btn" style="background-color: brown;">
+                        Shoot<span aria-hidden>_</span>
+                        <span aria-hidden class="cybr-btn__glitch">Shoot</span>
+                        <span aria-hidden class="cybr-btn__tag">R25</span>
+                    </button>
+                </section>
+                <section @click="backHome" class="final">
+                    <button class="cybr-btn" style="background-color: brown;">
+                        Home<span aria-hidden>_</span>
+                        <span aria-hidden class="cybr-btn__glitch">Shoot</span>
+                        <span aria-hidden class="cybr-btn__tag">R25</span>
+                    </button>
+                </section>
+                <section class="d-flex justify-content-center w-100 pt-4">
+                    <table class="table table-dark table-hover" style="width: 40vw;">
+                        <thead>
+                            <th>Length</th>
+                            <th>Type Ship</th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="ship in sinks">
+                                <td>{{ship.locations.length}}</td>
+                                <td>{{ship.type}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </main>
+        </div>
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+    <script src="./scripts/game.js"></script>
+</body>
+
+</html>
