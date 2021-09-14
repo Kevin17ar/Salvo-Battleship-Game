@@ -21,7 +21,7 @@ class WebAuthoricazition extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/api/games/players").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/").permitAll()
-                .antMatchers("/web/games.html","/web/scripts/**", "/web/styles/**").permitAll()
+                .antMatchers("/web/index.html","/web/scripts/**", "/web/styles/**").permitAll()
                 .antMatchers("/**").hasAnyAuthority("PLAYER");
 
         http.formLogin()

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+
+<body>
+    <section>
+        <div class="container" id="app">
+            <div class="user signinBx">
+                <div class="imgBx"><img src="https://pngvalor.com/files/preview/1280x720/12116174469584zqo35tws8ca30w7svkdapnal2mt2nutxead0znbx8gedcns9m2oqg8rmgzispz0ut3n7pqidtquuhtcpjoprddv4tdubvq5yoxu.jpg" alt="" /></div>
+                <div class="formBx">
+                    <form action="" @submit.prevent="login">
+                        <h2>Sign In</h2>
+                        <input v-model="user" type="text" name="" placeholder="Username" />
+                        <input v-model="password" type="password" name="" placeholder="Password" />
+                        <input type="submit" name="" value="Login" />
+                        <p class="signup">
+                            Don't have an account ?
+                            <a href="#" @click="toggleForm">Sign Up.</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+            <div class="user signupBx">
+                <div class="formBx">
+                    <form action="" @submit.prevent="register">
+                        <h2>Create an Player</h2>
+                        <input v-model="userR" type="text" name="" placeholder="Username" />
+                        <input v-model="email" type="email" name="" placeholder="Email Address" />
+                        <input v-model="password" type="password" name="" placeholder="Create Password" />
+                        <input v-model="passwordR" type="password" name="" placeholder="Confirm Password" />
+                        <input type="submit" name="" value="Sign Up" />
+                        <p class="signup">
+                            Already have an user ?
+                            <a href="#" @click="toggleForm">Sign in.</a>
+                        </p>
+                    </form>
+                </div>
+                <div class="imgBx"><img src="https://www.gamingcypher.com/wp-content/uploads/2021/07/World-of-Warships-Dutch-Cruisers-Eendracht-Gustav-Julius-Maerker-Key-Art-Gaming-Cypher-scaled.jpg" alt="" /></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./scripts/games.js"></script>
+</body>
+
+</html>

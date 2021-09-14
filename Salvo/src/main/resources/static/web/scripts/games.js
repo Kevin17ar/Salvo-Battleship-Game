@@ -4,12 +4,16 @@ const app = Vue.createApp({
             playerCurrent: [],
             games: [],
             players: [],
+
+            // login
             user: "",
             password: "",
+            // register
             userR: "",
             passwordR: "",
             email: "",
             passwordRepeat: "",
+
             sesionR: null,
         }
     },
@@ -41,27 +45,22 @@ const app = Vue.createApp({
             axios.post("/api/login", "user=" + this.user + "&password=" + this.password)
                 .then(res => {
                     console.log("Sing In")
-                    location.reload();
+                    location.href = "games.html"
                 })
-                .catch(err => console.log(err))
+                .catch(err => swal("Error", "User no exist", "error"))
         },
         signOut() {
             axios.post("/api/logout")
                 .then(res => {
-                    location.reload();
+                    location.href = "index.html";
                 })
         },
         register() {
             if (this.passwordR == this.passwordRepeat) {
                 axios.post("/api/players", "user=" + this.userR + "&email=" + this.email + "&password=" + this.passwordR)
                     .then(res => {
-                        Swal.fire({
-                            position: 'top',
-                            icon: 'success',
-                            title: 'Playyer create',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
+                        swal("Good job!", "You clicked the button!", "success").then(res => location.href = "games.html")
+
                     })
                     .catch(err => {
                         Swal.fire({
@@ -71,11 +70,7 @@ const app = Vue.createApp({
                         })
                     })
             } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Password incorrect',
-                })
+                swal("Error", "Password no ", "info");
             }
         },
         createGame() {
@@ -95,12 +90,15 @@ const app = Vue.createApp({
                     location.href = "game.html?gp=" + gpId.gpId;
                 })
                 .catch(err => console.log(err))
+        },
+        reload() {
+            location.reload()
+        },
+        toggleForm() {
+            const container = document.querySelector('.container');
+            container.classList.toggle('active');
         }
     },
-    computed: {
-        sesion() {
-
-        },
-    }
+    computed: {}
 })
 app.mount("#app")
