@@ -19,7 +19,26 @@ const app = Vue.createApp({
             idGame: null,
             status: "",
 
-            shipsType: ["CARRIER", "BATTLESHIP", "SUBMARINE", "DESTROYER", "BOAT"],
+            shipsType: [{
+                    type: "CARRIER",
+                    img: "https://icon-library.com/images/army_military_war_weapon_navy_aviation_ship__carrier_-512.png"
+                },
+                {
+                    type: "BATTLESHIP",
+                    img: "https://cdn.iconscout.com/icon/premium/png-256-thumb/battleship-2665792-2211825.png"
+                }, {
+                    type: "SUBMARINE",
+                    img: "https://cdn.pixabay.com/photo/2017/01/31/18/13/boat-2026130_1280.png"
+                },
+                {
+                    type: "DESTROYER",
+                    img: "https://www.pinclipart.com/picdir/big/115-1150169_flight-iia-ship-ddg-51-destroyer-silhouette-clipart.png"
+                },
+                {
+                    type: "BOAT",
+                    img: "https://svgsilh.com/png-512/3414723.png"
+                }
+            ],
             shipsSend: [],
             lengthShip: null,
             shipType: "",
@@ -160,12 +179,12 @@ const app = Vue.createApp({
             })
             if (arrayF.length == length) {
                 this.shipsSend.push({ type: type, locations: arrayF })
-                this.shipsType.splice(this.shipsType.indexOf(type), 1)
+                this.shipsType.splice(this.shipsType.findIndex(e => e.type == type), 1)
                 this.shipType = "";
                 arrayF.forEach(e => {
                     this.position.push(e);
                     let idElement = document.getElementById(e);
-                    idElement.style.background = "red";
+                    idElement.classList.add("positionShip");
                 })
             }
         },
@@ -195,8 +214,9 @@ const app = Vue.createApp({
                 this.shipsType.splice(this.shipsType.indexOf(type), 1)
                 arrayI.forEach(e => {
                     this.position.push(e);
-                    let idElement = document.getElementById(e);
-                    idElement.style.background = "red";
+                    let idElement = document.getElementById(e)
+                    idElement.classList.add("positionShip");
+
                 })
             } else {
                 console.log("no nay lugar")
@@ -348,7 +368,7 @@ const app = Vue.createApp({
                     this.shipsPlayer1.push(id)
                         // console.log(this.shipsPlayer1)
                     var id = document.getElementById(id);
-                    id.style.background = "blue";
+                    id.classList.add("positionShip");
                 })
             })
         },
@@ -390,3 +410,9 @@ const app = Vue.createApp({
     }
 })
 app.mount("#app")
+
+window.addEventListener('load', () => {
+    const contenedor_loader = document.querySelector('.contenedor')
+    contenedor_loader.style.opacity = 0
+    contenedor_loader.style.visibility = 'hidden'
+})

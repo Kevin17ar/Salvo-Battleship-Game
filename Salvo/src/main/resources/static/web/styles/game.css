@@ -29,6 +29,14 @@ main {
     flex-direction: column;
 }
 
+.positionShip {
+    background-color: rgba(240, 248, 255, 0.699);
+    border: 4px solid black !important;
+    background-image: url("./punto.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .tableSelect {
     color: white;
     background-color: rgba(255, 255, 255, 0.144);
@@ -36,6 +44,21 @@ main {
     /* width: 30vw; */
     border-collapse: collapse;
     box-shadow: blueviolet;
+}
+
+.vertical input {
+    display: none;
+}
+
+.vertical img {
+    transform: rotate(90deg);
+    border: 5px solid transparent;
+    border-radius: 20%;
+    background-color: rgba(220, 20, 60, 0.651);
+}
+
+.vertical input:checked+img {
+    background-color: rgba(83, 220, 20, 0.432);
 }
 
 .tableSelect td,
@@ -68,6 +91,11 @@ th {
     padding-top: 20px;
 }
 
+.final button {
+    min-width: 15vw;
+    max-width: 20vw;
+}
+
 .modal {
     transition: 0.5s !important;
 }
@@ -76,6 +104,15 @@ th {
     display: flex;
     justify-content: center;
     margin-top: 15vh;
+}
+
+.btn-selectShip {
+    background-color: rgba(230, 230, 230, 0.308);
+    border-radius: 8%;
+}
+
+.btn-selectShip:hover {
+    background-color: rgb(165, 42, 42);
 }
 
 .cybr-btn {
@@ -258,4 +295,71 @@ th {
 }
 
 
-/* title status */
+/* page load */
+
+.contenedor {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(22, 22, 22);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.7s ease-in-out;
+}
+
+.loader {
+    height: 95px;
+    display: flex;
+    align-items: center;
+}
+
+.linea {
+    width: 6px;
+    height: 95px;
+    background-color: white;
+    margin: 0 3px;
+    border-radius: 4px;
+    animation: loader .8s infinite;
+}
+
+.linea:nth-child(2) {
+    animation-delay: .1s;
+}
+
+.linea:nth-child(3) {
+    animation-delay: .2s;
+}
+
+.linea:nth-child(4) {
+    animation-delay: .3s;
+}
+
+.linea:nth-child(5) {
+    animation-delay: .4s;
+}
+
+.linea:nth-child(6) {
+    animation-delay: .5s;
+}
+
+.linea:nth-child(7) {
+    animation-delay: .6s;
+}
+
+.linea:nth-child(8) {
+    animation-delay: .7s;
+}
+
+@keyframes loader {
+    0% {
+        height: 0;
+    }
+    50% {
+        height: 95px;
+    }
+    100% {
+        height: 0;
+    }
+}

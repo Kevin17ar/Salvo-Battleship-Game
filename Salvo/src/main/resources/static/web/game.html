@@ -11,6 +11,18 @@
 </head>
 
 <body>
+    <div class="contenedor">
+        <div class="loader">
+            <div class="linea"></div>
+            <div class="linea"></div>
+            <div class="linea"></div>
+            <div class="linea"></div>
+            <div class="linea"></div>
+            <div class="linea"></div>
+            <div class="linea"></div>
+            <div class="linea"></div>
+        </div>
+    </div>
     <div id="app" class="wrapper">
         <div class="d-flex justify-content-star">
             <button @click="backHome" type="button" class="btn btn-danger m-3">
@@ -44,7 +56,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="element in tbody">
-                                <td>{{element}}</td>
+                                <th>{{element}}</th>
                                 <td v-for="elements in thead" :id="element+elements" @click="idTableShipSelect(element+elements)"></td>
                             </tr>
                         </tbody>
@@ -66,10 +78,15 @@
                     </table>
                 </div> {{color}} {{salvo}} {{player2salvos}}
                 <div v-show="showStarButton && showStar" class="final">
-                    <div class="d-flex flex-column">
-                        <button @click="changeShip(ship)" v-for="ship in shipsType" class="mb-2">{{ship}}</button>
-                        <label for="vertical">VERTICAL</label>
-                        <input v-model="vertical" type="checkbox" name="vertical" id="vertical">{{vertical}}
+                    <div class="d-flex flex-column align-items-center">
+                        <button @click="changeShip(ship.type)" v-for="ship in shipsType" class="btn-selectShip mb-2">
+                            <p class="text-white">{{ship.type}}</p>
+                            <!-- <img :src="ship.img" alt="" height="60"> -->
+                        </button>
+                        <label for="vertical" class="vertical mb-2">
+                            <input v-model="vertical" type="checkbox" name="vertical" id="vertical">
+                            <img src="https://lh3.googleusercontent.com/proxy/BWi9FTjUnN0mmEAg885-4DzFqEbzqjBWODc900Y0ueO9cxCfeqgNy7o_tkNMxBJICnWcdVz6OceHhK9HejE5PbwLwDczzw3tzYwt_0HdcWM8WLi11xwSx63skgVDcXhDgtf3nRI8bQ" alt="" height="70">
+                        </label>
                     </div>
                     <button @click="sendLocationShips" class="cybr-btn" style="background-color: brown;">
                         Star<span aria-hidden>_</span>
@@ -84,7 +101,7 @@
                 </button>
             </section>
             <section class="d-flex justify-content-center w-100 pt-4">
-                <table class="table table-dark table-hover" style="width: 40vw;">
+                <table v-show="sinks.length != 0" class="table table-dark table-hover" style="width: 40vw;">
                     <thead>
                         <th>Length</th>
                         <th>Type Ship</th>

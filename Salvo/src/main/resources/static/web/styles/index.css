@@ -167,3 +167,73 @@ section .container.active .signinBx .imgBx {
         width: 100%;
     }
 }
+
+
+/* page load */
+
+.contenedor {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(22, 22, 22);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.7s ease-in-out;
+}
+
+.loader {
+    height: 95px;
+    display: flex;
+    align-items: center;
+}
+
+.linea {
+    width: 6px;
+    height: 95px;
+    background-color: white;
+    margin: 0 3px;
+    border-radius: 4px;
+    animation: loader .8s infinite;
+}
+
+.linea:nth-child(2) {
+    animation-delay: .1s;
+}
+
+.linea:nth-child(3) {
+    animation-delay: .2s;
+}
+
+.linea:nth-child(4) {
+    animation-delay: .3s;
+}
+
+.linea:nth-child(5) {
+    animation-delay: .4s;
+}
+
+.linea:nth-child(6) {
+    animation-delay: .5s;
+}
+
+.linea:nth-child(7) {
+    animation-delay: .6s;
+}
+
+.linea:nth-child(8) {
+    animation-delay: .7s;
+}
+
+@keyframes loader {
+    0% {
+        height: 0;
+    }
+    50% {
+        height: 95px;
+    }
+    100% {
+        height: 0;
+    }
+}
