@@ -81,7 +81,7 @@
                     <div class="d-flex flex-column align-items-center">
                         <button @click="changeShip(ship.type)" v-for="ship in shipsType" class="btn-selectShip mb-2">
                             <p class="text-white">{{ship.type}}</p>
-                            <!-- <img :src="ship.img" alt="" height="60"> -->
+                            <img :src="ship.img" alt="" height="60">
                         </button>
                         <label for="vertical" class="vertical mb-2">
                             <input v-model="vertical" type="checkbox" name="vertical" id="vertical">
