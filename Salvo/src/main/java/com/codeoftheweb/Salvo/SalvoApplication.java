@@ -24,7 +24,7 @@ public class SalvoApplication {
 		System.out.println("Welcome to Salvo");
 	}
 	@Bean
-	public CommandLineRunner initData(PlayerRepository playerRepository, GameRepository gameRepository, GamePlayerRepository gamePlayerRepository, ShipRepository shipRepository, SalvoRepository salvoRepository, ScoreRepository scoreRepository){
+	public CommandLineRunner initData(PlayerRepository playerRepository){
 		return (args) -> {
 
 			Player player1 = new Player("fede16", "j.bauer@ctu.gov", passwordEncoder.encode("1234"));
