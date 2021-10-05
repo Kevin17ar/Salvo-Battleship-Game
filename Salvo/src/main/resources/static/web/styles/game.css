@@ -51,7 +51,7 @@ main {
 }
 
 .vertical img {
-    transform: rotate(90deg);
+    /* transform: rotate(90deg); */
     border: 5px solid transparent;
     border-radius: 20%;
     background-color: rgba(220, 20, 60, 0.651);
