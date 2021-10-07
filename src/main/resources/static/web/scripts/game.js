@@ -64,6 +64,7 @@ const app = Vue.createApp({
                 this.status = res.data.status;
                 this.salvos = res.data.salvos.sort((a, b) => parseInt(a.turn) - parseInt(b.turn))
                 console.log(res.data)
+                console.log(this.status)
 
                 axios.get("/api/games/" + this.idGame)
                     .then(res => {
@@ -251,7 +252,10 @@ const app = Vue.createApp({
                         this.showShoot = false;
                         this.getStatusTimeOut();
                     })
-                    .catch(err => console.log(err))
+                    .catch(err => Swal.fire({
+                        icon: 'error',
+                        text: 'wait for enemy to shoot',
+                    }))
             } else {
                 Swal.fire({
                     icon: 'error',

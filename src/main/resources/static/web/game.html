@@ -94,7 +94,7 @@
                     </button>
                 </div>
             </section>
-            <section v-show="status == 'shoot' && showShoot" class="final">
+            <section v-show="status == 'shoot'" class="final">
                 <button @click="sendSalvos" class="cybr-btn" style="background-color: brown;">
                     Shoot<span aria-hidden>_</span>
                     <span aria-hidden class="cybr-btn__glitch">Shoot</span>
@@ -116,6 +116,7 @@
             </section>
         </main>
     </div>
+
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@next"></script>

@@ -137,27 +137,22 @@ public class GameController {
         if (status.isEmpty()){
             return new ResponseEntity<>("empty",HttpStatus.FORBIDDEN);
         }
-        else{
+        else {
             Game game = gamePlayer.getGame();
-            if (status.equals("winner")){
+            if (status.equals("winner")) {
                 Score score = new Score(LocalDateTime.now(), 1, player, game);
                 scoreRepository.save(score);
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }
-            if (status.equals("loser")){
+            if (status.equals("loser")) {
                 scoreRepository.save(new Score(LocalDateTime.now(), 0, player, game));
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }
-            if (status.equals("draw")){
+            if (status.equals("draw")) {
                 scoreRepository.save(new Score(LocalDateTime.now(), 0.5, player, game));
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }
-            else {
-                GamePlayer gamePlayerEnemy = game.getGamePlayers().stream().filter(pl -> pl.getId() != gpId).findFirst().orElse(null);
-
-                scoreRepository.save(new Score(LocalDateTime.now(), 0, player, game));
-                scoreRepository.save(new Score(LocalDateTime.now(), 1, gamePlayerEnemy.getPlayer(), game));
-            }
-
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }
     }
-
 }
